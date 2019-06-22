@@ -1,8 +1,10 @@
-package com.app.searchplaces;
+package com.app.searchplaces.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.app.presentation.R;
 
 public class MainActivity extends AppCompatActivity {
 

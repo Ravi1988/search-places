@@ -1,33 +1,36 @@
 apply plugin: 'com.android.library'
-
 android {
-    compileSdkVersion 28
-
-
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
     }
-
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    dependencies {
+        def domainDependencies = rootProject.ext.domainDependencies
+        def domainTestDependencies = rootProject.ext.domainTestDependencies
 
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+        // reactive
+        api domainDependencies.rxAndroid
+        api domainDependencies.rxJava
+        // android architecture component
+        api domainDependencies.pagingRuntime
+        api domainDependencies.pagingRxJava
+        // test
+        testImplementation domainTestDependencies.junit
+        testImplementation domainTestDependencies.mockito
+    }
 }

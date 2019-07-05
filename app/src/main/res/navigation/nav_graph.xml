@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/searchPlaceFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
+    <fragment
+        android:id="@+id/searchPlaceFragment"
+        android:name="com.app.searchplaces.ui.venue.SearchVenueFragment"
+        android:label="Fragment B"
+        tools:layout="@layout/search_list_view">
+        <action
+            android:id="@+id/searchToDetail"
+            app:destination="@id/searchDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchDetailFragment"
+        android:name="com.app.searchplaces.ui.venue.VenueDetailFragment"
+        android:label="Fragment C"
+        tools:layout="@layout/venue_detail_view">
+        <argument android:name="position" android:defaultValue="0" />
+    </fragment>
+</navigation>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">data</string>
+    <string name="network_not_available">Please check your internet and retry.</string>
 </resources>

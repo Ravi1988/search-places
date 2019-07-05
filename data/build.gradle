@@ -12,9 +12,18 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"https://api.foursquare.com\"")
+            buildConfigField("Double", "DEFAULT_LAT", "47.6062")
+            buildConfigField("Double", "DEFAULT_LONG", "-122.3321")
         }
+        debug{
+            buildConfigField("String", "BASE_URL", "\"https://api.foursquare.com\"")
+            buildConfigField("Double", "DEFAULT_LAT", "47.6062")
+            buildConfigField("Double", "DEFAULT_LONG", "-122.3321")
+        }
+
     }
     compileOptions {
         targetCompatibility 1.8
@@ -22,15 +31,17 @@ android {
     }
 
     dependencies {
-        def dataDependencies = rootProject.ext.dataDependencies
-        def dataTestDependencies = rootProject.ext.dataTestDependencies
 
-        implementation fileTree(include: ['*.jar'], dir: 'libs')
-        // android support libs
-        api dataDependencies.appCompat
+
+        def dataDependencies = rootProject.ext.dataDependencies
 
         // dependency injection
         api dataDependencies.javaxInject
+        api appDependencies.dagger
+        api appDependencies.daggerAndroid
+        api appDependencies.daggerAndroidSupport
+        annotationProcessor appDependencies.daggerCompiler
+        annotationProcessor appDependencies.daggerAndroidProcessor
 
         // network
         api dataDependencies.retrofit
@@ -38,15 +49,23 @@ android {
         api dataDependencies.retrofitRxJava2Adapter
         api dataDependencies.okhttpLogging
 
-        // android architecture component
-        api dataDependencies.lifecycleExtensions
-        api dataDependencies.lifecycleCommon
-        api dataDependencies.reactiveStreams
+        //event bus
+        api dataDependencies.bus
+
+
+        // reactive
+        api dataDependencies.rxAndroid
+        api dataDependencies.rxJava
 
         // test
-        testImplementation dataTestDependencies.junit
-        testImplementation dataTestDependencies.mockito
-        androidTestImplementation dataTestDependencies.testRunner
-        implementation project(':domain')
+        testImplementation appTestDependencies.junit
+        androidTestImplementation appTestDependencies.testRunner
+        androidTestImplementation appTestDependencies.testRules
+        androidTestImplementation appTestDependencies.supportAnnotations
+        testImplementation appTestDependencies.mockitoCore
+        testAnnotationProcessor appTestDependencies.daggerCompiler
+        androidTestAnnotationProcessor appTestDependencies.daggerCompiler
+        testImplementation appTestDependencies.powermockModuleJunit4
+        testImplementation appTestDependencies.powermockApiMockito
     }
 }

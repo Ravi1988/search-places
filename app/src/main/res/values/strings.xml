@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Search Places</string>
     <string name="action_search">Search Places</string>
+    <string name="favourited">Marked as favourite.</string>
+    <string name="un_favourited">Removed from favourite.</string>
+    <string name="retry">RETRY</string>
+    <string name="no_details">No venu details are available.</string>
+    <string name="search_hint">Type to search…</string>
+    <string name="seattle">Seattle</string>
+    <string name="empty">Explore nearby places.</string>
+    <string name="venue_detail">Venue Detail</string>
 </resources>

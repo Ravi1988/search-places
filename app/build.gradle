@@ -9,12 +9,19 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://api.foursquare.com\"")
+            buildConfigField("Double", "DEFAULT_LAT", "47.6062")
+            buildConfigField("Double", "DEFAULT_LONG", "-122.3321")
         }
         debug {
             minifyEnabled false
@@ -23,13 +30,16 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix "-DEBUG"
             signingConfig android.signingConfigs.debug
-            buildConfigField("String", "BASE_URL", "\"https://api.foursquare.com\"")
+            buildConfigField("Double", "DEFAULT_LAT", "47.6062")
+            buildConfigField("Double", "DEFAULT_LONG", "-122.3321")
         }
     }
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+
 
     dataBinding {
         enabled = true
@@ -42,44 +52,45 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // android support libs
     implementation appDependencies.material
-    implementation appDependencies.supportv4
     implementation appDependencies.recyclerview
     implementation appDependencies.cardview
     implementation appDependencies.annotation
+    implementation appDependencies.appCompat
 
-    // parser
-    implementation appDependencies.gson
-    // dependency injection
-    implementation appDependencies.dagger
-    implementation appDependencies.daggerAndroid
-    implementation appDependencies.daggerAndroidSupport
-    annotationProcessor appDependencies.daggerCompiler
     // ui
     implementation appDependencies.constraintLayout
     implementation appDependencies.glide
     implementation appDependencies.glideAnnotation
     implementation appDependencies.navigationFragment
     implementation appDependencies.navigationUi
+    implementation appDependencies.coordinatorlayout
+
+    // android architecture component
+    implementation appDependencies.pagingRuntime
+    implementation appDependencies.pagingRxJava
+    implementation appDependencies.lifecycleExtensions
+    implementation appDependencies.lifecycleCommon
+    implementation appDependencies.reactiveStreams
+
+    // dependency injection
+    annotationProcessor appDependencies.daggerCompiler
+    annotationProcessor appDependencies.daggerAndroidProcessor
 
     //other
-    implementation appDependencies.multidex
-    implementation appDependencies.anko
+    implementation appDependencies.map
 
     // test
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.testRunner
     androidTestImplementation appTestDependencies.testRules
-    androidTestImplementation appTestDependencies.espressoCore
-    androidTestImplementation appTestDependencies.espressoContrib
-    implementation appTestDependencies.espressoIdlingResource
     androidTestImplementation appTestDependencies.supportAnnotations
-    testImplementation appTestDependencies.robolectric
     testImplementation appTestDependencies.mockitoCore
     testAnnotationProcessor appTestDependencies.daggerCompiler
     androidTestAnnotationProcessor appTestDependencies.daggerCompiler
     testImplementation appTestDependencies.powermockModuleJunit4
     testImplementation appTestDependencies.powermockApiMockito
 
+    //Module dependency
     implementation project(':data')
-    implementation project(':domain')
+
 }

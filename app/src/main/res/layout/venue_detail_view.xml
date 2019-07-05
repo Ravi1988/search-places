@@ -1,0 +1,42 @@
+<layout>
+   <data>
+      <variable
+          name="vm"
+          type="com.app.searchplaces.ui.venue.vm.VenueDetailViewModel" />
+   </data>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAppBackground"
+    android:id="@+id/coordinatorLay">
+   <include android:id="@+id/appbarLay" layout="@layout/collapsible_toolbar"/>
+
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:id="@+id/scrollView"
+       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+       android:layout_height="match_parent">
+   <include
+       layout="@layout/venue_item_detail"
+       app:vm1="@{vm}"
+       />
+   </androidx.core.widget.NestedScrollView>
+   <com.google.android.material.floatingactionbutton.FloatingActionButton
+       android:id="@+id/fav_fab"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_anchorGravity="right"
+       android:layout_margin="8dp"
+       app:favState="@{vm.liveDataVenue}"
+       app:layout_anchor = "@id/scrollView"
+       app:backgroundTint="#FFFFFF"
+       app:favClick="@{vm.liveDataVenue}"
+       android:src="@drawable/ic_sharp_favorite_border_24px"
+       app:borderWidth="0dp"
+       app:fabSize="mini"
+       />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

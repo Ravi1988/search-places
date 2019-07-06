@@ -6,7 +6,7 @@ ext {
     versionCode = 1
     versionName = "1.0"
     androidCompileSdkVersion = 28
-    testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "com.appsimobile.weekly.MockJUnitRunner"
 
 // Libraries
     ankoVersion = '0.10.4'
@@ -88,7 +88,7 @@ ext {
             mockitoCore           : "org.mockito:mockito-core:$mockitoCoreVersion",
             daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
             powermockModuleJunit4 : "org.powermock:powermock-module-junit4:$powermockVersion",
-            powermockApiMockito   : "org.powermock:powermock-api-mockito:$powermockVersion",
+            powermockApiMockito   : "org.powermock:powermock-api-mockito2:$powermockVersion",
             supportAnnotations    : "androidx.annotation:annotation:$supportVersion",
             daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
 

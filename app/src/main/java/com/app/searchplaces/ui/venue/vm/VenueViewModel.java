@@ -6,6 +6,7 @@ import android.database.MatrixCursor;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PagedList;
 
+import com.app.searchplaces.data.BuildConfig;
 import com.app.searchplaces.data.api.repository.places.VenueDataRepo;
 import com.app.searchplaces.data.api.retrofit.MobileApi;
 import com.app.searchplaces.data.models.places.Places;
@@ -26,6 +27,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
+import static com.app.searchplaces.util.AppConstant.favMap;
 import static com.app.searchplaces.util.AppConstant.sAutocompleteColNames;
 
 /**
@@ -107,7 +109,13 @@ public class VenueViewModel extends BaseViewModel {
                             || res.getResponse().getVenues().isEmpty()){
                         showInfoMsg("No venues found");// if empty show user information msg
                     }
-                    return res;// return result to caller.
+                    return res;// return valid response.
+                }).map(res  ->{
+                    for(Venue  venue : res.getResponse().getVenues()){
+                                    setIfMarkedFav(venue);
+                                    setDistance(venue);
+                                }
+                    return res;
                 });
     }
 
@@ -162,6 +170,8 @@ public class VenueViewModel extends BaseViewModel {
                     //switchMap to persist the all valid inputs
                     .switchMap(input -> venueDataRepo.searchSuggestion(mobileApi,
                             APIParams.getSearchSuggestionParam(input), true))
+                    .doOnError(this::dispatchOnFailure)
+                    .retryWhen(this::getRetrySubject)
                     //pass only valid response to next step
                     .filter(res -> res != null && res.getResponse() != null
                             && res.getResponse().getVenues() != null)
@@ -193,6 +203,36 @@ public class VenueViewModel extends BaseViewModel {
             cursor.addRow(row);
         }
         return cursor;
+    }
+
+    /**
+     * calculate and sets the distance of venue from user specified location
+     * @param venue venue object of {@class} {@link Venue}
+     */
+    private void setDistance(Venue venue) {
+        if(venue.getLocation() != null) {
+            float distance = CommonUtil.distanceBetween(BuildConfig.DEFAULT_LAT, BuildConfig.DEFAULT_LONG,
+                    venue.getLocation().getLat(), venue.getLocation().getLng());
+            if(distance > 100) {// if distance is far convert to kilometer
+                distance =  distance / 1000;
+                venue.setDistance(CommonUtil.roundOf(distance) +" km");
+            }else{//else set in meter
+                venue.setDistance(CommonUtil.roundOf(distance) +" m");
+            }
+
+        }
+    }
+
+    /**
+     * Syncs local data with API data.
+     * checks if user has marked any venue as favourite
+     * and update the API response
+     * @param venue venue object of {@class} {@link Venue}
+     */
+    private void setIfMarkedFav(Venue venue) {
+        if(favMap != null && favMap.contains(venue.getId())){
+            venue.setMarkedFav(true);
+        }
     }
 //Uncomment for paginated API
 //    public Observable<Places> afterSearchLoad(Map<String, Object> map) {

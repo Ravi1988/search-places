@@ -26,14 +26,7 @@ public class VenueDataRepoImpl implements VenueDataRepo {
     @Override
     public Observable<Places> getPlaces(MobileApi mobileApi,Map<String, Object> query, boolean shouldCache) {
         return mobileApi.getVenues(query,shouldCache).
-                compose(new AppRxSchedulers().applySchedulers())
-                .map(res -> {
-                    for(Venue  venue : res.getResponse().getVenues()){
-                        checkIfMarkedFav(venue);
-                        calculateDistance(venue);
-                    }
-                    return res;
-        });
+                compose(new AppRxSchedulers().applySchedulers());
     }
 
     /**
@@ -47,33 +40,5 @@ public class VenueDataRepoImpl implements VenueDataRepo {
         return mobileApi.getSearchSuggestion(query,shouldCache).compose(new AppRxSchedulers().applySchedulers());
     }
 
-    /**
-     * calculate and sets the distance of venue from user specified location
-     * @param venue venue object of {@class} {@link Venue}
-     */
-    private void calculateDistance(Venue venue) {
-        if(venue.getLocation() != null) {
-            float distance = CommonUtil.distanceBetween(BuildConfig.DEFAULT_LAT, BuildConfig.DEFAULT_LONG,
-                    venue.getLocation().getLat(), venue.getLocation().getLng());
-            if(distance > 100) {// if distance is far convert to kilometer
-                distance =  distance / 1000;
-                venue.setDistance(CommonUtil.roundOf(distance) +" km");
-            }else{//else set in meter
-                venue.setDistance(CommonUtil.roundOf(distance) +" m");
-            }
 
-        }
-    }
-
-    /**
-     * Syncs local data with API data.
-     * checks if user has marked any venue as favourite
-     * and update the API response
-     * @param venue venue object of {@class} {@link Venue}
-     */
-    private void checkIfMarkedFav(Venue venue) {
-        if(favMap != null && favMap.contains(venue.getId())){
-            venue.setMarkedFav(true);
-        }
-    }
 }

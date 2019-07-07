@@ -18,7 +18,7 @@ Application for searching places in Seattle area. Created with MVVM architecture
 1. AndroidX - for backward compatibility of widgets/API's, architecture components and other Android components/feature.
 2. Material - for backward compatibility of material design.
 3. Dagger   - for dependency injection. This improves the code test coverage.
-4. ConstraintLayout - for flat view hierarchy.          
+4. ConstraintLayout - for flat view hierarchy.       
 5. Glide    - for image loading and caching.                  
 6  Navigation - for navigation between fragments.
 7. Coordinatorlayout - for coordinate the animations and transitions of the views 

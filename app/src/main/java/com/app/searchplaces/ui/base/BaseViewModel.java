@@ -22,7 +22,7 @@ import io.reactivex.subjects.PublishSubject;
 public class BaseViewModel extends ViewModel {
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();//Holds reference of all disposable
-    private PublishSubject<Object> retrySubject = PublishSubject.create();
+    private PublishSubject<Object> retrySubject = PublishSubject.create();// To retry most recent API hit
     /**
      * @param msg To be displayed on UI
      */
@@ -69,6 +69,7 @@ public class BaseViewModel extends ViewModel {
     }
 
     /**
+     * Retry most recent API hit
      * @param observable {@link Observable} of type  {@link Throwable}
      * @return retry subject
      */

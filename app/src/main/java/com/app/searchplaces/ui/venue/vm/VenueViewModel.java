@@ -173,8 +173,11 @@ public class VenueViewModel extends BaseViewModel {
                     .doOnError(this::dispatchOnFailure)
                     .retryWhen(this::getRetrySubject)
                     //pass only valid response to next step
-                    .filter(res -> res != null && res.getResponse() != null
-                            && res.getResponse().getVenues() != null)
+                    .filter(res ->{
+                            hideLoader();
+                           return res != null && res.getResponse() != null
+                            && res.getResponse().getVenues() != null;
+                    })
                     .map(res -> res.getResponse().getVenues())// return venue list
                     .subscribe(searchSuggestionList::setValue,this::dispatchOnFailure));
         }

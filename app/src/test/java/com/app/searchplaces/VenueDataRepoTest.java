@@ -29,6 +29,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * This will execute test against repo layer
+ * Validated if retrofit client gets called and returns the response
+ * Error case handling will be done in view model test
+ */
 public class VenueDataRepoTest extends BaseTest{
     @Mock
     MobileApi mobileApi;

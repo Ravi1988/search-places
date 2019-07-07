@@ -154,8 +154,12 @@ public class SearchVenueFragment extends BaseMVVMFragment<VenueViewModel> {
      */
     private void observeSearchSuggetion(){
         getViewModel().getSearchSuggestion().observe(this,
-                venues -> getSearchView().getSuggestionsAdapter().
-                        changeCursor(getViewModel().getCursor(venues)));
+                venues -> {
+            getSearchView().getSuggestionsAdapter().
+                        changeCursor(getViewModel().getCursor(venues));
+                    getSearchView().getSuggestionsAdapter().notifyDataSetChanged();
+                });
+
     }
 
     /**

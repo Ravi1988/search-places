@@ -57,9 +57,9 @@ public  class VenueItemBinding {
     @BindingAdapter("venueIcon")
     public static void setIcon(ImageView imageView,List<Category> category){
         if(category != null && category.size() > 0 && category.get(0).getIcon() != null){
-            Glide.with(imageView.getContext()).load(category.get(0).getIcon().getIconUrl()).placeholder(R.drawable.ic_sharp_photo_24px).into(imageView);
+            Glide.with(imageView.getContext()).load(category.get(0).getIcon().getIconUrl()).placeholder(R.drawable.ic_placeholder).into(imageView);
         }else{
-            imageView.setImageResource(R.drawable.ic_sharp_photo_24px);
+            imageView.setImageResource(R.drawable.ic_placeholder);
         }
     }
 

@@ -1,17 +1,12 @@
-package com.app.searchplaces.data.api.repository.places;
+package com.app.searchplaces.data.api.repository.venuerepo;
 
-import com.app.searchplaces.data.BuildConfig;
 import com.app.searchplaces.data.api.Rx.AppRxSchedulers;
 import com.app.searchplaces.data.api.retrofit.MobileApi;
-import com.app.searchplaces.data.models.places.Places;
-import com.app.searchplaces.data.models.places.Venue;
-import com.app.searchplaces.util.CommonUtil;
+import com.app.searchplaces.data.models.venuemodels.Places;
 
 import java.util.Map;
 
 import io.reactivex.Observable;
-
-import static com.app.searchplaces.util.AppConstant.favMap;
 
 /**
  * Responsible to fetch and alter venue data from server

@@ -1,11 +1,11 @@
 package com.app.searchplaces.data;
 
-import com.app.searchplaces.data.models.places.Category;
-import com.app.searchplaces.data.models.places.Icon;
-import com.app.searchplaces.data.models.places.Meta;
-import com.app.searchplaces.data.models.places.Places;
-import com.app.searchplaces.data.models.places.Response;
-import com.app.searchplaces.data.models.places.Venue;
+import com.app.searchplaces.data.models.venuemodels.Category;
+import com.app.searchplaces.data.models.venuemodels.Icon;
+import com.app.searchplaces.data.models.venuemodels.Meta;
+import com.app.searchplaces.data.models.venuemodels.Places;
+import com.app.searchplaces.data.models.venuemodels.Response;
+import com.app.searchplaces.data.models.venuemodels.Venue;
 
 import java.util.Arrays;
 import java.util.List;

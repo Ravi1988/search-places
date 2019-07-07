@@ -7,10 +7,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PagedList;
 
 import com.app.searchplaces.data.BuildConfig;
-import com.app.searchplaces.data.api.repository.places.VenueDataRepo;
+import com.app.searchplaces.data.api.repository.venuerepo.VenueDataRepo;
 import com.app.searchplaces.data.api.retrofit.MobileApi;
-import com.app.searchplaces.data.models.places.Places;
-import com.app.searchplaces.data.models.places.Venue;
+import com.app.searchplaces.data.models.venuemodels.Places;
+import com.app.searchplaces.data.models.venuemodels.Venue;
 import com.app.searchplaces.ui.base.BaseViewModel;
 import com.app.searchplaces.ui.venue.VenueDataSource;
 import com.app.searchplaces.util.APIParams;

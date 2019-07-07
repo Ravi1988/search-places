@@ -2,8 +2,8 @@ package com.app.searchplaces.di;
 
 import android.app.Application;
 
-import com.app.searchplaces.data.api.repository.places.VenueDataRepo;
-import com.app.searchplaces.data.api.repository.places.VenueDataRepoImpl;
+import com.app.searchplaces.data.api.repository.venuerepo.VenueDataRepo;
+import com.app.searchplaces.data.api.repository.venuerepo.VenueDataRepoImpl;
 import com.app.searchplaces.data.api.retrofit.MobileApi;
 import com.app.searchplaces.data.api.retrofit.interceptor.CacheInterceptor;
 import com.app.searchplaces.data.api.retrofit.interceptor.ConnectivityInterceptor;

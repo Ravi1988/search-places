@@ -1,7 +1,7 @@
-package com.app.searchplaces.data.api.repository.places;
+package com.app.searchplaces.data.api.repository.venuerepo;
 
 import com.app.searchplaces.data.api.retrofit.MobileApi;
-import com.app.searchplaces.data.models.places.Places;
+import com.app.searchplaces.data.models.venuemodels.Places;
 
 import java.util.Map;
 

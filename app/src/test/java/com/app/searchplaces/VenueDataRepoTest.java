@@ -1,31 +1,23 @@
 package com.app.searchplaces;
 
 import com.app.searchplaces.data.PlacesData;
-import com.app.searchplaces.data.api.repository.places.VenueDataRepo;
-import com.app.searchplaces.data.api.repository.places.VenueDataRepoImpl;
+import com.app.searchplaces.data.api.repository.venuerepo.VenueDataRepoImpl;
 import com.app.searchplaces.data.api.retrofit.MobileApi;
-import com.app.searchplaces.data.models.places.Places;
+import com.app.searchplaces.data.models.venuemodels.Places;
 import com.app.searchplaces.ui.venue.vm.VenueViewModel;
-import com.app.searchplaces.util.APIParams;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyMap;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

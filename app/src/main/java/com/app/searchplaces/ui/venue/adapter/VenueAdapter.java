@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.searchplaces.R;
-import com.app.searchplaces.data.models.places.Venue;
+import com.app.searchplaces.data.models.venuemodels.Venue;
 import com.app.searchplaces.ui.base.BaseViewHolder;
 
 import javax.inject.Inject;

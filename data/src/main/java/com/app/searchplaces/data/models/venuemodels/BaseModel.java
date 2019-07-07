@@ -1,4 +1,4 @@
-package com.app.searchplaces.data.models.places;
+package com.app.searchplaces.data.models.venuemodels;
 
 import com.google.gson.annotations.Expose;
 

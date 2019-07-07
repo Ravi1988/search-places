@@ -3,12 +3,11 @@ package com.app.searchplaces.ui.venue;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.app.searchplaces.BuildConfig;
 import com.app.searchplaces.R;
-import com.app.searchplaces.data.models.places.Venue;
+import com.app.searchplaces.data.models.venuemodels.Venue;
 import com.app.searchplaces.databinding.VenueDetailViewBinding;
 import com.app.searchplaces.events.EventConstant;
 import com.app.searchplaces.events.MessageEvent;

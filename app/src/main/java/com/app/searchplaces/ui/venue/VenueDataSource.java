@@ -3,9 +3,7 @@ package com.app.searchplaces.ui.venue;
 import androidx.annotation.NonNull;
 import androidx.paging.PageKeyedDataSource;
 
-import com.app.searchplaces.data.api.repository.places.VenueDataRepo;
-import com.app.searchplaces.data.api.retrofit.MobileApi;
-import com.app.searchplaces.data.models.places.Venue;
+import com.app.searchplaces.data.models.venuemodels.Venue;
 import com.app.searchplaces.ui.venue.vm.VenueViewModel;
 
 import java.util.Map;

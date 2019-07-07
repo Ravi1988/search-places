@@ -2,7 +2,7 @@ package com.app.searchplaces.ui.venue.vm;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.app.searchplaces.data.models.places.Venue;
+import com.app.searchplaces.data.models.venuemodels.Venue;
 import com.app.searchplaces.ui.base.BaseViewModel;
 
 import javax.inject.Inject;

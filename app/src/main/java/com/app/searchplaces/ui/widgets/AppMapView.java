@@ -9,9 +9,9 @@ import com.google.android.gms.maps.MapView;
 /**
  * Intercepts the touch events for smooth scroll inside scrollable container
  */
-public class CustomMapView extends MapView {
+public class AppMapView extends MapView {
 
-public CustomMapView(Context context, AttributeSet attrs) {
+public AppMapView(Context context, AttributeSet attrs) {
     super(context, attrs);
 }
 

@@ -1,5 +1,5 @@
 
-package com.app.searchplaces.data.models.places;
+package com.app.searchplaces.data.models.venuemodels;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

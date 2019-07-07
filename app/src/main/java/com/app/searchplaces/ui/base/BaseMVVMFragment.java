@@ -233,14 +233,14 @@ public abstract class BaseMVVMFragment<T extends BaseViewModel> extends DaggerFr
     /**
      * Hide progress dialog
      */
-    private void hideProgressbar() {
+    protected final void hideProgressbar() {
         progressDialog.hide();
     }
 
     /**
      * Show progress dialog
      */
-    private void showProgressbar() {
+    protected final void showProgressbar() {
         progressDialog.show();
     }
 
@@ -248,7 +248,7 @@ public abstract class BaseMVVMFragment<T extends BaseViewModel> extends DaggerFr
      * Show snackbar with msg
      * @param data msg to display
      */
-    private void showSnackBar(String data) {
+    protected final void showSnackBar(String data) {
         Snackbar.make(getActivity().findViewById(android.R.id.content),
                 data, Snackbar.LENGTH_LONG).show();
     }
@@ -257,7 +257,7 @@ public abstract class BaseMVVMFragment<T extends BaseViewModel> extends DaggerFr
      * Show snackbar with retry button to retry API call
      * @param data msg to display
      */
-    private void showSnackBarWithRetry(String data) {
+    protected final void showSnackBarWithRetry(String data) {
         Snackbar.make(getActivity().findViewById(android.R.id.content),
                 data, Snackbar.LENGTH_INDEFINITE)
                 .setAction(getResources().getString(R.string.retry), view -> {
@@ -279,45 +279,59 @@ public abstract class BaseMVVMFragment<T extends BaseViewModel> extends DaggerFr
 
         if (manager != null && search != null) {
             //create and set search adapter for suggestion
-            search.setSuggestionsAdapter(new SimpleCursorAdapter(
-                    getActivity(), android.R.layout.simple_list_item_1, null,
-                    new String[] { SearchManager.SUGGEST_COLUMN_TEXT_1 },
-                    new int[] { android.R.id.text1 },0));
-
+            setSuggetionAdapter();
             search.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
-            search.setQueryRefinementEnabled(true);
-            search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    onQuerySubmit(query);
-                    return true;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    onQueryChange(newText);
-                    return true;
-                }
-            });
-            search.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-                @Override
-                public boolean onSuggestionSelect(int position) {
-                    return false;
-                }
-
-                @Override
-                public boolean onSuggestionClick(int position) {
-                    Cursor cursor = (Cursor) search.getSuggestionsAdapter().getItem(position);
-                    String data = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1));
-                    if(!search.getQuery().equals(data)){
-                        //Sets the selected query from suggestion list to search box
-                        search.setQuery(data,true);
-                    }
-                    cursor.close();
-                    return true;
-                }
-            });
+            search.setOnQueryTextListener(getQueryListener());
+            search.setOnSuggestionListener(getSuggetionListener());
         }
+    }
+
+    private SearchView.OnSuggestionListener getSuggetionListener() {
+        return new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int position) {
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int position) {
+                Cursor cursor = (Cursor) search.getSuggestionsAdapter().getItem(position);
+                String data = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1));
+                if(!search.getQuery().equals(data)){
+                    //Sets the selected query from suggestion list to search box
+                    search.setQuery(data,true);
+                }
+                cursor.close();
+                return true;
+            }
+        };
+    }
+
+    private SearchView.OnQueryTextListener getQueryListener() {
+        return new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                onQuerySubmit(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                onQueryChange(newText);
+                return true;
+            }
+        };
+    }
+
+    /**
+     * Creates and sets the cursor adapter to search view widget
+     */
+    private void setSuggetionAdapter() {
+        search.setSuggestionsAdapter(new SimpleCursorAdapter(
+                getActivity(), android.R.layout.simple_list_item_1, null,
+                new String[] { SearchManager.SUGGEST_COLUMN_TEXT_1 },
+                new int[] { android.R.id.text1 },0));
+
     }
 
     /**

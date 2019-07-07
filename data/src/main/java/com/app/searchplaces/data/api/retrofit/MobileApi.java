@@ -1,6 +1,6 @@
 package com.app.searchplaces.data.api.retrofit;
 
-import com.app.searchplaces.data.models.places.Places;
+import com.app.searchplaces.data.models.venuemodels.Places;
 import java.util.Map;
 import io.reactivex.Observable;
 import retrofit2.http.GET;

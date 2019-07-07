@@ -4,7 +4,7 @@
     <data>
         <variable
             name="holder"
-            type="com.app.searchplaces.data.models.places.Venue" />
+            type="com.app.searchplaces.data.models.venuemodels.Venue" />
     </data>
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"

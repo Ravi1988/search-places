@@ -1,6 +1,5 @@
 package com.app.searchplaces.ui.venue.adapter;
 
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,11 +10,10 @@ import androidx.databinding.BindingAdapter;
 import androidx.navigation.Navigation;
 
 import com.app.searchplaces.R;
-import com.app.searchplaces.data.models.places.Category;
-import com.app.searchplaces.data.models.places.Venue;
+import com.app.searchplaces.data.models.venuemodels.Category;
+import com.app.searchplaces.data.models.venuemodels.Venue;
 import com.app.searchplaces.events.EventConstant;
 import com.app.searchplaces.events.MessageEvent;
-import com.app.searchplaces.util.AppConstant;
 import com.app.searchplaces.util.CommonUtil;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

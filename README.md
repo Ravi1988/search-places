@@ -6,7 +6,7 @@ Application for searching places in Seattle area. Created with MVVM architecture
 2. Gradle 3.4.0
 3. Java
 
-# Assumptions made
+# Out of scope
 1. No user login/session.
 2. Saving app data in application internal memory without any encryption.
 3. No proguard configuration.
